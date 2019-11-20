@@ -1,7 +1,5 @@
-# Petitosa API
+# Poderosas Bank
 
-API do Petitosa
+Mock de banco para uso em protótipos
 
-Deve estar online em: http://petitosa-api.herokuapp.com/
-
-E a documentação deve estar em em: http://petitosa-api.herokuapp.com/swagger-ui.html
+Deve estar online em: http://poderosas-bank.herokuapp.com/
