@@ -41,7 +41,7 @@ public class CartaoCreditoService extends CrudService<CartaoCredito, Long, Carta
     }
 
     public boolean validate(ValidarCartaoCreditoDto validarCartaoCreditoDto) {
-        String numero = String.format("%016d", Integer.parseInt(validarCartaoCreditoDto.getNumero()));
+        String numero = String.format("%016d", Long.parseLong(validarCartaoCreditoDto.getNumero()));
         CartaoCredito cartao = findByNumero(numero);
         if (cartao == null)
             return false;
