@@ -73,6 +73,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         usuarioService.register(getNewUsuario("conta3"), getNewConta("01235"), getNewCartao("5555666677778889"));
         usuarioService.register(getNewUsuario("conta4"), getNewConta("01236"), getNewCartao("5555666677778810"));
         usuarioService.register(getNewUsuario("conta5"), getNewConta("01237"), getNewCartao("5555666677778811"));
+        usuarioService.register(getNewUsuario("petitosa"), getNewConta("98765"), getNewCartao("6669996669996669"));
     }
 
 }

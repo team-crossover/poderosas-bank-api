@@ -42,5 +42,4 @@ public class ContaBancariaController {
             throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
         return ContaBancariaDto.fromConta(conta);
     }
-
 }
