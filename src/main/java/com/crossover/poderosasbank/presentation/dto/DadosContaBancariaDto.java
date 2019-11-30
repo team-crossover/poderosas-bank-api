@@ -1,7 +1,5 @@
 package com.crossover.poderosasbank.presentation.dto;
 
-import com.crossover.poderosasbank.business.entity.Usuario;
-import com.crossover.poderosasbank.business.enums.TipoConta;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,14 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ValidarContaBancariaDto {
+public class DadosContaBancariaDto {
 
     @NotBlank
     @ApiModelProperty(example = "01234")

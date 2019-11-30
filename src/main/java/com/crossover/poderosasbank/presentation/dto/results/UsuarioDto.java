@@ -1,4 +1,4 @@
-package com.crossover.poderosasbank.presentation.dto.readonly;
+package com.crossover.poderosasbank.presentation.dto.results;
 
 import com.crossover.poderosasbank.business.entity.Usuario;
 import io.swagger.annotations.ApiModelProperty;

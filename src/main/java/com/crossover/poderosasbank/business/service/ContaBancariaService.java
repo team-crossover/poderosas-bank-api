@@ -4,12 +4,14 @@ import com.crossover.poderosasbank.business.entity.ContaBancaria;
 import com.crossover.poderosasbank.business.entity.Usuario;
 import com.crossover.poderosasbank.business.enums.TipoConta;
 import com.crossover.poderosasbank.data.repository.ContaBancariaRepository;
-import com.crossover.poderosasbank.presentation.dto.ValidarContaBancariaDto;
+import com.crossover.poderosasbank.presentation.dto.DadosContaBancariaDto;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.transaction.Transactional;
-import java.util.Random;
+import java.math.BigDecimal;
 
 @Service
 @Transactional
@@ -17,6 +19,20 @@ public class ContaBancariaService extends CrudService<ContaBancaria, Long, Conta
 
     public ContaBancaria findByNumero(String numero) {
         return getRepository().findByNumero(numero).orElse(null);
+    }
+
+    public ContaBancaria findByDadosAndValidate(DadosContaBancariaDto dadosContaBancariaDto) {
+        String numero = String.format("%05d", Integer.parseInt(dadosContaBancariaDto.getNumero()));
+        ContaBancaria conta = findByNumero(numero);
+        if (conta == null)
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "Conta bancária não encontrada");
+        String digito = dadosContaBancariaDto.getDigito();
+        if (!conta.getDigito().equals(digito))
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Dígito inválido");
+        String agencia = String.format("%04d", Integer.parseInt(dadosContaBancariaDto.getAgencia()));
+        if (!conta.getAgencia().equals(agencia))
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Agência inválida");
+        return conta;
     }
 
     public ContaBancaria generate(TipoConta tipoConta, Usuario usuario) {
@@ -34,22 +50,9 @@ public class ContaBancariaService extends CrudService<ContaBancaria, Long, Conta
                 .digito(dv)
                 .agencia(agencia)
                 .usuario(usuario)
+                .saldo(BigDecimal.ZERO)
                 .build();
         return save(conta);
-    }
-
-    public boolean validate(ValidarContaBancariaDto validarContaBancariaDto) {
-        String numero = String.format("%05d", Integer.parseInt(validarContaBancariaDto.getNumero()));
-        ContaBancaria conta = findByNumero(numero);
-        if (conta == null)
-            return false;
-        String digito = validarContaBancariaDto.getDigito();
-        if (!conta.getDigito().equals(digito))
-            return false;
-        String agencia = String.format("%04d", Integer.parseInt(validarContaBancariaDto.getAgencia()));
-        if (!conta.getAgencia().equals(agencia))
-            return false;
-        return true;
     }
 
 }

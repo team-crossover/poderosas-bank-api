@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.parameters.P;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

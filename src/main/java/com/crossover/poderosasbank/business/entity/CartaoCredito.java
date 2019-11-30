@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -21,6 +22,7 @@ public class CartaoCredito {
     @NotBlank
     @Pattern(regexp = "^\\d*$")
     @Size(min = 16, max = 16)
+    @Column(unique = true)
     private String numero;
 
     @NotBlank
@@ -30,6 +32,13 @@ public class CartaoCredito {
     @NotBlank
     @Pattern(regexp = "^\\d\\d\\d$")
     private String cvv;
+
+    @NotNull
+    @Min(0)
+    private BigDecimal limite;
+
+    @NotNull
+    private BigDecimal faturaAtual;
 
     // ----------
 

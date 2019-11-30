@@ -7,12 +7,14 @@ import com.crossover.poderosasbank.business.enums.TipoConta;
 import com.crossover.poderosasbank.business.service.CartaoCreditoService;
 import com.crossover.poderosasbank.business.service.ContaBancariaService;
 import com.crossover.poderosasbank.business.service.UsuarioService;
-import com.crossover.poderosasbank.presentation.dto.NovoUsuarioDto;
-import com.crossover.poderosasbank.presentation.dto.readonly.UsuarioDto;
+import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.util.Random;
 
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -51,15 +53,18 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 .numero(numero)
                 .validade("20/2020")
                 .cvv("999")
+                .limite(new BigDecimal(RandomUtils.nextDouble(500.0, 10000.0)))
+                .faturaAtual(new BigDecimal(RandomUtils.nextDouble(0.0, 500.0)))
                 .build();
     }
 
     private ContaBancaria getNewConta(String numero) {
         return ContaBancaria.builder()
                 .tipo(TipoConta.CORRENTE)
-                .numero("01234")
+                .numero(numero)
                 .digito("5")
                 .agencia("6789")
+                .saldo(new BigDecimal(RandomUtils.nextDouble(0.0, 10000.0)))
                 .build();
     }
 

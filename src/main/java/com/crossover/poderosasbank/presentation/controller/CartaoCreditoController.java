@@ -1,13 +1,10 @@
 package com.crossover.poderosasbank.presentation.controller;
 
 import com.crossover.poderosasbank.business.entity.CartaoCredito;
-import com.crossover.poderosasbank.business.entity.ContaBancaria;
 import com.crossover.poderosasbank.business.service.CartaoCreditoService;
-import com.crossover.poderosasbank.business.service.ContaBancariaService;
-import com.crossover.poderosasbank.presentation.dto.RespostaSimplesDto;
-import com.crossover.poderosasbank.presentation.dto.ValidarCartaoCreditoDto;
-import com.crossover.poderosasbank.presentation.dto.readonly.CartaoCreditoDto;
-import com.crossover.poderosasbank.presentation.dto.readonly.ContaBancariaDto;
+import com.crossover.poderosasbank.presentation.dto.DadosCartaoCreditoDto;
+import com.crossover.poderosasbank.presentation.dto.results.CartaoCreditoDto;
+import com.crossover.poderosasbank.presentation.dto.results.ResultadoValidacaoDto;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +29,9 @@ public class CartaoCreditoController {
     }
 
     @PostMapping("/api/v1/cartoes/validar")
-    @ApiOperation("Valida se os dados são de um cartão existente")
-    private RespostaSimplesDto validar(@RequestBody @Valid ValidarCartaoCreditoDto validarCartaoCreditoDto) {
-        if (cartaoCreditoService.validate(validarCartaoCreditoDto))
-            return new RespostaSimplesDto(HttpStatus.OK, "/api/v1/cartoes/validar", "Valid");
-        else
-            return new RespostaSimplesDto(HttpStatus.OK, "/api/v1/cartoes/validar", "Invalid");
+    @ApiOperation("Valida se os dados são de um cartão existente, se sim, retorna o cartão")
+    private CartaoCreditoDto validar(@RequestBody @Valid DadosCartaoCreditoDto dadosCartaoCreditoDto) {
+        return CartaoCreditoDto.fromCartao(cartaoCreditoService.findByDadosAndValidate(dadosCartaoCreditoDto));
     }
 
     @GetMapping("/api/v1/cartao/{id}")

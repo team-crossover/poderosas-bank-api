@@ -2,10 +2,9 @@ package com.crossover.poderosasbank.presentation.controller;
 
 import com.crossover.poderosasbank.business.entity.ContaBancaria;
 import com.crossover.poderosasbank.business.service.ContaBancariaService;
-import com.crossover.poderosasbank.presentation.dto.RespostaSimplesDto;
-import com.crossover.poderosasbank.presentation.dto.ValidarCartaoCreditoDto;
-import com.crossover.poderosasbank.presentation.dto.ValidarContaBancariaDto;
-import com.crossover.poderosasbank.presentation.dto.readonly.ContaBancariaDto;
+import com.crossover.poderosasbank.presentation.dto.DadosContaBancariaDto;
+import com.crossover.poderosasbank.presentation.dto.results.ContaBancariaDto;
+import com.crossover.poderosasbank.presentation.dto.results.ResultadoValidacaoDto;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,12 +29,9 @@ public class ContaBancariaController {
     }
 
     @PostMapping("/api/v1/contas/validar")
-    @ApiOperation("Valida se os dados são de uma conta existente")
-    private RespostaSimplesDto validar(@RequestBody @Valid ValidarContaBancariaDto validarContaBancariaDto) {
-        if (contaService.validate(validarContaBancariaDto))
-            return new RespostaSimplesDto(HttpStatus.OK, "/api/v1/contas/validar", "Valid");
-        else
-            return new RespostaSimplesDto(HttpStatus.OK, "/api/v1/contas/validar", "Invalid");
+    @ApiOperation("Valida se os dados são de uma conta existente, se sim, retorna a conta")
+    private ContaBancariaDto validar(@RequestBody @Valid DadosContaBancariaDto dadosContaBancariaDto) {
+        return ContaBancariaDto.fromConta(contaService.findByDadosAndValidate(dadosContaBancariaDto));
     }
 
     @GetMapping("/api/v1/conta/{id}")

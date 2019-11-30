@@ -7,7 +7,7 @@ import com.crossover.poderosasbank.business.enums.TipoConta;
 import com.crossover.poderosasbank.data.repository.UsuarioRepository;
 import com.crossover.poderosasbank.presentation.dto.LoginDto;
 import com.crossover.poderosasbank.presentation.dto.NovoUsuarioDto;
-import com.crossover.poderosasbank.presentation.dto.readonly.UsuarioDto;
+import com.crossover.poderosasbank.presentation.dto.results.UsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,11 @@
-package com.crossover.poderosasbank.presentation.dto.readonly;
+package com.crossover.poderosasbank.presentation.dto.results;
 
 import com.crossover.poderosasbank.business.entity.CartaoCredito;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -26,6 +29,10 @@ public class CartaoCreditoDto {
     @ApiModelProperty(example = "999")
     private String cvv;
 
+    private BigDecimal faturaAtual;
+
+    private BigDecimal limite;
+
     public static CartaoCreditoDto fromCartao(CartaoCredito cartaoCredito) {
         return CartaoCreditoDto.builder()
                 .id(cartaoCredito.getId())
@@ -34,6 +41,8 @@ public class CartaoCreditoDto {
                 .numero(cartaoCredito.getNumero())
                 .validade(cartaoCredito.getValidade())
                 .cvv(cartaoCredito.getCvv())
+                .faturaAtual(cartaoCredito.getFaturaAtual())
+                .limite(cartaoCredito.getLimite())
                 .build();
     }
 }

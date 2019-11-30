@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ValidarCartaoCreditoDto {
+public class DadosCartaoCreditoDto {
 
     @NotBlank
     @ApiModelProperty(example = "5555666677778888")

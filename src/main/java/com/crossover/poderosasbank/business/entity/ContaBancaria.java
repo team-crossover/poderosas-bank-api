@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class ContaBancaria {
 
     @NotBlank
     @Pattern(regexp = "^\\d+$")
+    @Column(unique = true)
     private String numero;
 
     @NotBlank
@@ -39,6 +40,9 @@ public class ContaBancaria {
     @NotBlank
     @Pattern(regexp = "^\\d+$")
     private String agencia;
+
+    @NotNull
+    private BigDecimal saldo;
 
     // -----------
 

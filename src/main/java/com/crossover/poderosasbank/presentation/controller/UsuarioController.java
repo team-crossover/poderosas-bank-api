@@ -3,7 +3,7 @@ package com.crossover.poderosasbank.presentation.controller;
 import com.crossover.poderosasbank.business.service.UsuarioService;
 import com.crossover.poderosasbank.presentation.dto.LoginDto;
 import com.crossover.poderosasbank.presentation.dto.NovoUsuarioDto;
-import com.crossover.poderosasbank.presentation.dto.readonly.UsuarioDto;
+import com.crossover.poderosasbank.presentation.dto.results.UsuarioDto;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

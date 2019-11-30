@@ -1,7 +1,6 @@
 package com.crossover.poderosasbank.data.repository;
 
 import com.crossover.poderosasbank.business.entity.CartaoCredito;
-import com.crossover.poderosasbank.business.entity.ContaBancaria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

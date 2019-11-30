@@ -1,4 +1,4 @@
-package com.crossover.poderosasbank.presentation.dto.readonly;
+package com.crossover.poderosasbank.presentation.dto.results;
 
 import com.crossover.poderosasbank.business.entity.CartaoCredito;
 import com.crossover.poderosasbank.business.entity.ContaBancaria;
@@ -6,6 +6,7 @@ import com.crossover.poderosasbank.business.enums.TipoConta;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,8 @@ public class ContaBancariaDto {
     @ApiModelProperty(example = "6789")
     private String agencia;
 
+    private BigDecimal saldo;
+
     public static ContaBancariaDto fromConta(ContaBancaria contaBancaria) {
         return ContaBancariaDto.builder()
                 .id(contaBancaria.getId())
@@ -43,6 +46,7 @@ public class ContaBancariaDto {
                 .numero(contaBancaria.getNumero())
                 .digito(contaBancaria.getDigito())
                 .agencia(contaBancaria.getAgencia())
+                .saldo(contaBancaria.getSaldo())
                 .build();
     }
 }
