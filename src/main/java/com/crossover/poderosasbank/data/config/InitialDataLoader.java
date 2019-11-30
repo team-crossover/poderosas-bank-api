@@ -64,7 +64,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 .numero(numero)
                 .digito("5")
                 .agencia("6789")
-                .saldo(new BigDecimal(RandomUtils.nextDouble(0.0, 10000.0)))
+                .saldo(BigDecimal.ZERO)
                 .build();
     }
 
