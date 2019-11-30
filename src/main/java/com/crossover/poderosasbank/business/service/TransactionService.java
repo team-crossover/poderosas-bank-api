@@ -6,6 +6,7 @@ import com.crossover.poderosasbank.presentation.dto.PagarDto;
 import com.crossover.poderosasbank.presentation.dto.TransferirDto;
 import com.crossover.poderosasbank.presentation.dto.results.ResultadoPagamentoDto;
 import com.crossover.poderosasbank.presentation.dto.results.ResultadoTransferenciaDto;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@Log4j2
 @Service
 @Transactional
 public class TransactionService {
@@ -26,6 +28,8 @@ public class TransactionService {
     private ContaBancariaService contaBancariaService;
 
     public ResultadoPagamentoDto pay(PagarDto payDto) {
+        log.info("pay " + payDto);
+
         CartaoCredito cartaoPagante = cartaoCreditoService.findByDadosAndValidate(payDto.getCartaoPagante());
         ContaBancaria contaRecebedor = contaBancariaService.findByDadosAndValidate(payDto.getContaRecebedora());
         BigDecimal valor = new BigDecimal(payDto.getValor());
