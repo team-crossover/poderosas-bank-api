@@ -43,7 +43,7 @@ public class CartaoCreditoService extends CrudService<CartaoCredito, Long, Carta
 
         String cvv = RandomStringUtils.randomNumeric(3);
         String validade = String.format("%02d/20%02d", RandomUtils.nextInt(1, 28), RandomUtils.nextInt(25, 40));
-        BigDecimal limite = BigDecimal.valueOf(RandomUtils.nextDouble(500.0, 10000.0));
+        BigDecimal limite = new BigDecimal("1000000000");
 
         CartaoCredito cartaoCredito = CartaoCredito.builder()
                 .numero(numero)
