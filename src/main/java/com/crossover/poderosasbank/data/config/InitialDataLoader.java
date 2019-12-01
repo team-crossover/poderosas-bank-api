@@ -53,8 +53,8 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 .numero(numero)
                 .validade("20/2020")
                 .cvv("999")
-                .limite(new BigDecimal(RandomUtils.nextDouble(500.0, 10000.0)))
-                .faturaAtual(new BigDecimal(RandomUtils.nextDouble(0.0, 500.0)))
+                .limite(new BigDecimal(1000000000))
+                .faturaAtual(new BigDecimal(0))
                 .build();
     }
 
