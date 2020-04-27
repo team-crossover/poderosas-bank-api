@@ -1,5 +1,5 @@
 # Poderosas Bank API
-Back-end (API Rest) de um banco fictício para transações bancárias simples. Utilizado para auxiliar as simulações de pagamento da plataforma [Petitosa](https://github.com/team-crossover/petitosa-web).
+Back-end (API Rest) de um banco fictício para transações bancárias simples. Utilizado para auxiliar as simulações de pagamento da plataforma [Petitosa](https://github.com/team-crossover/petitosa).
 
 Trabalho feito para disciplina de Engenharia Econômica de Software, do semestre 2019-2 do curso de graduação em Engenharia de Software da Universidade Federal de Goiás.
 
